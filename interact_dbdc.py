@@ -182,31 +182,31 @@ def run_model():
         file_name = str(args.eval_input).split('/')[-1].split('.')[0]
         script_response = open(script_out_path + '/' + file_name + '_dialoGPT_medium_' + timestr + '.txt', 'w')
         for raw_text in script_file:
-
+            raw_text = raw_text.replace("\\","/")
             print("input:", raw_text)
             if args.chateval_multi == False:
                 history.append(raw_text.replace('\n', ''))
             elif args.chateval_multi == True:
-                # if args.max_history == 2:
-                #     turn1 = raw_text.split('</s>')[0].lstrip().replace('’', '')
-                #     turn2 = raw_text.split('</s>')[1].lstrip().replace('’', '')
-                #     history.append(turn1.replace('\n', ''))
-                #     history.append(turn2.replace('\n', ''))
-                # elif args.max_history == 3:
-                #     turn1 = raw_text.split('</s>')[0].lstrip().replace('’', '')
-                #     turn2 = raw_text.split('</s>')[1].lstrip().replace('’', '')
-                #     turn3 = raw_text.split('</s>')[2].lstrip().replace('’', '')
-                #     history.append(turn1.replace('\n', ''))
-                #     history.append(turn2.replace('\n', ''))
-                #     history.append(turn3.replace('\n', ''))
-                if len(raw_text) > 1:
-                    # n_turn = raw_text.split()[0]
-                    utter = raw_text.split()[1:]
-                    input_utter = ' '.join(utter)
-                    print("utter", input_utter)
-                    script_response.write("%s" % (raw_text))
-                    history.append(input_utter)
-                    continue
+                if args.max_history == 2:
+                    turn1 = raw_text.split('</s>')[0].lstrip().replace('’', '')
+                    turn2 = raw_text.split('</s>')[1].lstrip().replace('’', '')
+                    history.append(turn1.replace('\n', ''))
+                    history.append(turn2.replace('\n', ''))
+                elif args.max_history == 3:
+                    turn1 = raw_text.split('</s>')[0].lstrip().replace('’', '')
+                    turn2 = raw_text.split('</s>')[1].lstrip().replace('’', '')
+                    turn3 = raw_text.split('</s>')[2].lstrip().replace('’', '')
+                    history.append(turn1.replace('\n', ''))
+                    history.append(turn2.replace('\n', ''))
+                    history.append(turn3.replace('\n', ''))
+                # if len(raw_text) > 1:
+                #     # n_turn = raw_text.split()[0]
+                #     utter = raw_text.split()[1:]
+                #     input_utter = ' '.join(utter)
+                #     print("utter", input_utter)
+                #     script_response.write("%s" % (raw_text))
+                #     history.append(input_utter)
+                #     continue
                 # elif len(raw_text) < 1:
                 #     n_turn = 0 # turn count reset
                 #     history = [] # history reset
@@ -253,11 +253,11 @@ if __name__ == '__main__':
     )
     logger = logging.getLogger(__name__)
 
-    if os.path.exists(MODEL_FOLDER):
-        print('Found existing ./models folder, skip creating a new one!')
-        os.makedirs(MODEL_FOLDER, exist_ok=True)
-    else:
-        os.makedirs(MODEL_FOLDER)
+    # if os.path.exists(MODEL_FOLDER):
+    #     print('Found existing ./models folder, skip creating a new one!')
+    #     os.makedirs(MODEL_FOLDER, exist_ok=True)
+    # else:
+    #     os.makedirs(MODEL_FOLDER)
 
     #########################################################################
     # Download Model
