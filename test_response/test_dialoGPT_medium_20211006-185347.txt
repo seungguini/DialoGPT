@@ -1,0 +1,10 @@
+[ground]	It's been raining for a few days now .
+
+[ground]	I'm not sure .
+
+[ground]	I'm sure she was a good person .
+
+[ground]	I'm not sure what to tell you .
+
+[ground]	I'm the owner , I'm the manager , I'm the manager , I'm the manager ,
+
