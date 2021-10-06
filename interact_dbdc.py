@@ -144,6 +144,7 @@ def run_model():
     #### load the GPT-2 model
     config = GPT2Config.from_json_file(os.path.join(args.model_name_or_path, './config.json'))
     enc = GPT2Tokenizer.from_pretrained(args.model_name_or_path)
+    print('model_checkpoint_path', args.load_checkpoint)
     model = load_model(GPT2LMHeadModel(config), args.load_checkpoint, args, verbose=True)
     model.to(device)
     model.eval()
