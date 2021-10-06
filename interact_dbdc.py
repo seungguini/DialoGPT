@@ -115,7 +115,7 @@ def run_model():
     parser.add_argument("--max_seq_length", type=int, default=128)
 
     parser.add_argument("--generation_length", type=int, default=20)
-    parser.add_argument("--max_history", type=int, default=2)
+    parser.add_argument("--max_history", type=int, default=3)
     parser.add_argument("--chateval_multi", type=boolean_string, default=False)
 
     parser.add_argument("--temperature", type=float, default=1)
