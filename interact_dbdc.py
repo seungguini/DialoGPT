@@ -188,18 +188,21 @@ def run_model():
             if args.chateval_multi == False:
                 history.append(raw_text.replace('\n', ''))
             elif args.chateval_multi == True:
-                if args.max_history == 2:
-                    turn1 = raw_text.split('</s>')[0].lstrip().replace('’', '')
-                    turn2 = raw_text.split('</s>')[1].lstrip().replace('’', '')
-                    history.append(turn1.replace('\n', ''))
-                    history.append(turn2.replace('\n', ''))
-                elif args.max_history == 3:
-                    turn1 = raw_text.split('</s>')[0].lstrip().replace('’', '')
-                    turn2 = raw_text.split('</s>')[1].lstrip().replace('’', '')
-                    turn3 = raw_text.split('</s>')[2].lstrip().replace('’', '')
-                    history.append(turn1.replace('\n', ''))
-                    history.append(turn2.replace('\n', ''))
-                    history.append(turn3.replace('\n', ''))
+                for turn in args.max_history:
+                    utterance = raw_text.split('</s>')[turn].lstrip().replace('’', '')
+                    history.append(utterance.replace('\n', ''))
+                # if args.max_history == 2:
+                #     turn1 = raw_text.split('</s>')[0].lstrip().replace('’', '')
+                #     turn2 = raw_text.split('</s>')[1].lstrip().replace('’', '')
+                #     history.append(turn1.replace('\n', ''))
+                #     history.append(turn2.replace('\n', ''))
+                # elif args.max_history == 3:
+                #     turn1 = raw_text.split('</s>')[0].lstrip().replace('’', '')
+                #     turn2 = raw_text.split('</s>')[1].lstrip().replace('’', '')
+                #     turn3 = raw_text.split('</s>')[2].lstrip().replace('’', '')
+                #     history.append(turn1.replace('\n', ''))
+                #     history.append(turn2.replace('\n', ''))
+                #     history.append(turn3.replace('\n', ''))
                 # if len(raw_text) > 1:
                 #     # n_turn = raw_text.split()[0]
                 #     utter = raw_text.split()[1:]
