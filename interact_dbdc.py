@@ -185,12 +185,12 @@ def run_model():
         for raw_text in script_file:
             raw_text = raw_text.replace("\\","/")
             print("input:", raw_text)
+
             if args.chateval_multi == False:
                 history.append(raw_text.replace('\n', ''))
             elif args.chateval_multi == True:
-                for turn in args.max_history:
-                    utterance = raw_text.split('</s>')[turn].lstrip().replace('’', '')
-                    history.append(utterance.replace('\n', ''))
+                for utterance in raw_text.split('</s>'):
+                    history.append(utterance.lstrip().replace('’', '').replace('\n',''))
                 # if args.max_history == 2:
                 #     turn1 = raw_text.split('</s>')[0].lstrip().replace('’', '')
                 #     turn2 = raw_text.split('</s>')[1].lstrip().replace('’', '')
